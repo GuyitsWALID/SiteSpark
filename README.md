@@ -1,3 +1,4 @@
+<img width="1918" height="912" alt="image" src="https://github.com/user-attachments/assets/8689f4d3-e2d5-4ca6-bf4a-2dadd5a96e16" />
 # SiteSpark
 
 Multi-page mini-websites built for creators, freelancers, and small businesses. Bookings, pricing, lead capture — all in one link.
