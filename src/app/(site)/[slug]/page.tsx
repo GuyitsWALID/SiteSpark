@@ -1,13 +1,66 @@
 import { notFound } from 'next/navigation';
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
+
+interface ProfileContent {
+  avatar: string;
+  name: string;
+  bio: string;
+  verified?: boolean;
+}
+
+interface LinksContent {
+  links: Array<{
+    title: string;
+    url: string;
+    icon?: string;
+    style?: string;
+  }>;
+}
+
+interface SocialContent {
+  platforms: Array<{
+    name: string;
+    url: string;
+    icon: string;
+  }>;
+}
+
+interface TextContent {
+  text: string;
+  align?: 'left' | 'center' | 'right';
+}
+
+interface ImageContent {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface VideoContent {
+  src: string;
+  title?: string;
+  thumbnail?: string;
+}
+
+interface ContactContent {
+  email?: string;
+  phone?: string;
+  address?: string;
+}
+
+interface GalleryContent {
+  images: string[];
+}
+
+type BlockContent = ProfileContent | LinksContent | SocialContent | TextContent | ImageContent | VideoContent | ContactContent | GalleryContent;
 
 interface Block {
   id: string;
   type: 'profile' | 'links' | 'social' | 'text' | 'image' | 'video' | 'contact' | 'gallery';
-  content: Record<string, unknown>;
+  content: BlockContent;
   settings: {
     backgroundColor?: string;
     textColor?: string;
@@ -176,7 +229,7 @@ const mockSites: { [key: string]: SiteData } = {
 };
 
 export default async function SitePage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // In production, fetch from database
   const site = mockSites[slug];
@@ -229,11 +282,11 @@ function SiteRenderer({ site }: { site: SiteData }) {
               <div key={block.id} className="text-center" style={{ marginBottom }}>
                 <div className="relative inline-block mb-4">
                   <img
-                    src={(block.content as any).avatar}
-                    alt={(block.content as any).name}
+                    src={(block.content as ProfileContent).avatar}
+                    alt={(block.content as ProfileContent).name}
                     className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-gray-100"
                   />
-                  {(block.content as any).verified && (
+                  {(block.content as ProfileContent).verified && (
                     <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -245,16 +298,16 @@ function SiteRenderer({ site }: { site: SiteData }) {
                   className="text-2xl font-bold mb-2"
                   style={{ color: site.theme.textColor }}
                 >
-                  {(block.content as any).name}
+                  {(block.content as ProfileContent).name}
                 </h1>
-                <p className="text-gray-600 leading-relaxed">{(block.content as any).bio}</p>
+                <p className="text-gray-600 leading-relaxed">{(block.content as ProfileContent).bio}</p>
               </div>
             );
             
           case 'links':
             return (
               <div key={block.id} className="space-y-4" style={{ marginBottom }}>
-                {(block.content as any).links.map((link: any, index: number) => (
+                {(block.content as LinksContent).links.map((link, index) => (
                   <a
                     key={index}
                     href={link.url}
@@ -280,7 +333,7 @@ function SiteRenderer({ site }: { site: SiteData }) {
           case 'social':
             return (
               <div key={block.id} className="flex justify-center space-x-4" style={{ marginBottom }}>
-                {(block.content as any).platforms.map((platform: any, index: number) => (
+                {(block.content as SocialContent).platforms.map((platform, index) => (
                   <a
                     key={index}
                     href={platform.url}
@@ -298,7 +351,7 @@ function SiteRenderer({ site }: { site: SiteData }) {
           case 'gallery':
             return (
               <div key={block.id} className="grid grid-cols-2 gap-3" style={{ marginBottom }}>
-                {(block.content as any).images.map((image: string, index: number) => (
+                {(block.content as GalleryContent).images.map((image, index) => (
                   <div key={index} className="aspect-square overflow-hidden rounded-xl">
                     <img
                       src={image}
@@ -314,10 +367,10 @@ function SiteRenderer({ site }: { site: SiteData }) {
             return (
               <div 
                 key={block.id} 
-                className={`text-${(block.content as any).align || 'center'}`}
+                className={`text-${(block.content as TextContent).align || 'center'}`}
                 style={{ marginBottom }}
               >
-                <p className="text-gray-600 leading-relaxed">{(block.content as any).text}</p>
+                <p className="text-gray-600 leading-relaxed">{(block.content as TextContent).text}</p>
               </div>
             );
             

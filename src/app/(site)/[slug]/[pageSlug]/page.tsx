@@ -1,13 +1,12 @@
 import { notFound } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import type { Site, Page, Block } from '@/lib/types';
 
 interface Props {
-  params: { slug: string; pageSlug: string };
+  params: Promise<{ slug: string; pageSlug: string }>;
 }
 
 export default async function PagePage({ params }: Props) {
-  const { slug, pageSlug } = params;
+  const { slug, pageSlug } = await params;
 
   // Fetch site
   const { data: site } = await supabase

@@ -524,7 +524,7 @@ export default function Home() {
               Perfect for every type of creator
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Whether you're selling products, booking services, or building your brand, SiteSpark helps you convert more visitors.
+              Whether you&apos;re selling products, booking services, or building your brand, SiteSpark helps you convert more visitors.
             </p>
           </div>
           
@@ -735,7 +735,7 @@ export default function Home() {
                     <div className="text-gray-600 text-sm">{testimonial.role}</div>
                   </div>
                 </div>
-                <p className="text-gray-700 leading-relaxed">"{testimonial.quote}"</p>
+                <p className="text-gray-700 leading-relaxed">&quot;{testimonial.quote}&quot;</p>
                 <div className="flex text-yellow-400 mt-4">
                   {[...Array(5)].map((_, i) => (
                     <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -756,7 +756,7 @@ export default function Home() {
             Ready to upgrade your bio link?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of creators who've already transformed their online presence with SiteSpark.
+            Join thousands of creators who&apos;ve already transformed their online presence with SiteSpark.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

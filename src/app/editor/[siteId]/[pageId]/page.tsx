@@ -1,13 +1,12 @@
 import { supabase } from '@/lib/supabase';
 import { getUser } from '@/lib/supabase';
-import type { Site, Page, Block } from '@/lib/types';
 
 interface Props {
-  params: { siteId: string; pageId: string };
+  params: Promise<{ siteId: string; pageId: string }>;
 }
 
 export default async function Editor({ params }: Props) {
-  const { siteId, pageId } = params;
+  const { siteId, pageId } = await params;
 
   const user = await getUser();
 

@@ -1,13 +1,66 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SiteSparkHorizontal } from '@/components/ui';
+
+interface ProfileContent {
+  avatar: string;
+  name: string;
+  bio: string;
+  verified?: boolean;
+}
+
+interface LinksContent {
+  links: Array<{
+    title: string;
+    url: string;
+    icon?: string;
+    style?: string;
+  }>;
+}
+
+interface SocialContent {
+  platforms: Array<{
+    name: string;
+    url: string;
+    icon: string;
+  }>;
+}
+
+interface TextContent {
+  text: string;
+  align?: 'left' | 'center' | 'right';
+}
+
+interface ImageContent {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface VideoContent {
+  src: string;
+  title?: string;
+  thumbnail?: string;
+}
+
+interface ContactContent {
+  email?: string;
+  phone?: string;
+  address?: string;
+}
+
+interface GalleryContent {
+  images: string[];
+}
+
+type BlockContent = ProfileContent | LinksContent | SocialContent | TextContent | ImageContent | VideoContent | ContactContent | GalleryContent;
 
 interface Block {
   id: string;
   type: 'profile' | 'links' | 'social' | 'text' | 'image' | 'video' | 'contact' | 'gallery';
-  content: Record<string, unknown>;
+  content: BlockContent;
   settings: {
     backgroundColor?: string;
     textColor?: string;
@@ -177,7 +230,7 @@ const templates = {
   }
 };
 
-export default function NewEditor() {
+function NewEditorContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const templateId = searchParams.get('template') || 'modern-fashion';
@@ -203,17 +256,6 @@ export default function NewEditor() {
       setSubdomain(template.name.toLowerCase().replace(/\s+/g, ''));
     }
   }, [templateId]);
-
-  const updateBlock = (blockId: string, updates: Partial<Block>) => {
-    if (!siteData) return;
-    
-    setSiteData({
-      ...siteData,
-      blocks: siteData.blocks.map(block => 
-        block.id === blockId ? { ...block, ...updates } : block
-      )
-    });
-  };
 
   const addBlock = (type: Block['type']) => {
     if (!siteData) return;
@@ -424,6 +466,14 @@ export default function NewEditor() {
   );
 }
 
+export default function NewEditor() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">Loading...</div>}>
+      <NewEditorContent />
+    </Suspense>
+  );
+}
+
 function getBlockIcon(type: Block['type']) {
   const icons = {
     profile: '👤',
@@ -447,22 +497,22 @@ function SitePreview({ siteData }: { siteData: SiteData }) {
             return (
               <div key={block.id} className="text-center">
                 <img
-                  src={(block.content as any).avatar}
-                  alt={(block.content as any).name}
+                  src={(block.content as ProfileContent).avatar}
+                  alt={(block.content as ProfileContent).name}
                   className="w-20 h-20 rounded-full mx-auto mb-3 object-cover"
                 />
                 <h1 className="text-xl font-bold text-gray-900 mb-1">
-                  {(block.content as any).name}
-                  {(block.content as any).verified && <span className="text-blue-500 ml-1">✓</span>}
+                  {(block.content as ProfileContent).name}
+                  {(block.content as ProfileContent).verified && <span className="text-blue-500 ml-1">✓</span>}
                 </h1>
-                <p className="text-gray-600 text-sm">{(block.content as any).bio}</p>
+                <p className="text-gray-600 text-sm">{(block.content as ProfileContent).bio}</p>
               </div>
             );
             
           case 'links':
             return (
               <div key={block.id} className="space-y-3">
-                {(block.content as any).links.map((link: any, index: number) => (
+                {(block.content as LinksContent).links.map((link, index) => (
                   <a
                     key={index}
                     href={link.url}
@@ -484,7 +534,7 @@ function SitePreview({ siteData }: { siteData: SiteData }) {
           case 'social':
             return (
               <div key={block.id} className="flex justify-center space-x-4">
-                {(block.content as any).platforms.map((platform: any, index: number) => (
+                {(block.content as SocialContent).platforms.map((platform, index) => (
                   <a
                     key={index}
                     href={platform.url}
@@ -499,7 +549,7 @@ function SitePreview({ siteData }: { siteData: SiteData }) {
           case 'gallery':
             return (
               <div key={block.id} className="grid grid-cols-3 gap-2">
-                {(block.content as any).images.map((image: string, index: number) => (
+                {(block.content as GalleryContent).images.map((image, index) => (
                   <img
                     key={index}
                     src={image}

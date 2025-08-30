@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SiteSparkLogo, SiteSparkIcon } from '@/components/ui';
 
@@ -17,7 +17,7 @@ interface Site {
   thumbnail: string;
 }
 
-export default function Dashboard() {
+function DashboardContent() {
   const [isSignedIn, setIsSignedIn] = useState(true); // Set to true for demo
   const [activeTab, setActiveTab] = useState('sites');
   const [showPublishSuccess, setShowPublishSuccess] = useState(false);
@@ -447,6 +447,14 @@ export default function Dashboard() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">Loading...</div>}>
+      <DashboardContent />
+    </Suspense>
   );
 }
 
