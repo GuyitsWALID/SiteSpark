@@ -51,8 +51,8 @@ export interface Block {
   page_id: string;
   type: BlockType;
   order: number;
-  content: any; // jsonb
-  styles: any; // jsonb
+  content: Record<string, unknown>; // jsonb
+  styles: Record<string, unknown>; // jsonb
   created_at: string;
   updated_at: string;
 }
@@ -63,7 +63,7 @@ export interface Template {
   slug: string;
   author: string;
   preview_image_url?: string;
-  default_site_schema: any; // jsonb
+  default_site_schema: Record<string, unknown>; // jsonb
   price: number;
   tags: string[];
   created_at: string;
@@ -74,7 +74,7 @@ export interface AnalyticsEvent {
   site_id: string;
   page_id?: string;
   event_type: EventType;
-  meta: any; // jsonb
+  meta: Record<string, unknown>; // jsonb
   created_at: string;
 }
 

@@ -7,7 +7,7 @@ import { SiteSparkHorizontal } from '@/components/ui';
 interface Block {
   id: string;
   type: 'profile' | 'links' | 'social' | 'text' | 'image' | 'video' | 'contact' | 'gallery';
-  content: any;
+  content: Record<string, unknown>;
   settings: {
     backgroundColor?: string;
     textColor?: string;
@@ -447,22 +447,22 @@ function SitePreview({ siteData }: { siteData: SiteData }) {
             return (
               <div key={block.id} className="text-center">
                 <img
-                  src={block.content.avatar}
-                  alt={block.content.name}
+                  src={(block.content as any).avatar}
+                  alt={(block.content as any).name}
                   className="w-20 h-20 rounded-full mx-auto mb-3 object-cover"
                 />
                 <h1 className="text-xl font-bold text-gray-900 mb-1">
-                  {block.content.name}
-                  {block.content.verified && <span className="text-blue-500 ml-1">✓</span>}
+                  {(block.content as any).name}
+                  {(block.content as any).verified && <span className="text-blue-500 ml-1">✓</span>}
                 </h1>
-                <p className="text-gray-600 text-sm">{block.content.bio}</p>
+                <p className="text-gray-600 text-sm">{(block.content as any).bio}</p>
               </div>
             );
             
           case 'links':
             return (
               <div key={block.id} className="space-y-3">
-                {block.content.links.map((link: any, index: number) => (
+                {(block.content as any).links.map((link: any, index: number) => (
                   <a
                     key={index}
                     href={link.url}
@@ -484,7 +484,7 @@ function SitePreview({ siteData }: { siteData: SiteData }) {
           case 'social':
             return (
               <div key={block.id} className="flex justify-center space-x-4">
-                {block.content.platforms.map((platform: any, index: number) => (
+                {(block.content as any).platforms.map((platform: any, index: number) => (
                   <a
                     key={index}
                     href={platform.url}
@@ -499,7 +499,7 @@ function SitePreview({ siteData }: { siteData: SiteData }) {
           case 'gallery':
             return (
               <div key={block.id} className="grid grid-cols-3 gap-2">
-                {block.content.images.map((image: string, index: number) => (
+                {(block.content as any).images.map((image: string, index: number) => (
                   <img
                     key={index}
                     src={image}

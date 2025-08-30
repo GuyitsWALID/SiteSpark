@@ -7,7 +7,7 @@ interface Props {
 interface Block {
   id: string;
   type: 'profile' | 'links' | 'social' | 'text' | 'image' | 'video' | 'contact' | 'gallery';
-  content: any;
+  content: Record<string, unknown>;
   settings: {
     backgroundColor?: string;
     textColor?: string;
@@ -229,11 +229,11 @@ function SiteRenderer({ site }: { site: SiteData }) {
               <div key={block.id} className="text-center" style={{ marginBottom }}>
                 <div className="relative inline-block mb-4">
                   <img
-                    src={block.content.avatar}
-                    alt={block.content.name}
+                    src={(block.content as any).avatar}
+                    alt={(block.content as any).name}
                     className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-gray-100"
                   />
-                  {block.content.verified && (
+                  {(block.content as any).verified && (
                     <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                       <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -245,16 +245,16 @@ function SiteRenderer({ site }: { site: SiteData }) {
                   className="text-2xl font-bold mb-2"
                   style={{ color: site.theme.textColor }}
                 >
-                  {block.content.name}
+                  {(block.content as any).name}
                 </h1>
-                <p className="text-gray-600 leading-relaxed">{block.content.bio}</p>
+                <p className="text-gray-600 leading-relaxed">{(block.content as any).bio}</p>
               </div>
             );
             
           case 'links':
             return (
               <div key={block.id} className="space-y-4" style={{ marginBottom }}>
-                {block.content.links.map((link: any, index: number) => (
+                {(block.content as any).links.map((link: any, index: number) => (
                   <a
                     key={index}
                     href={link.url}
@@ -280,7 +280,7 @@ function SiteRenderer({ site }: { site: SiteData }) {
           case 'social':
             return (
               <div key={block.id} className="flex justify-center space-x-4" style={{ marginBottom }}>
-                {block.content.platforms.map((platform: any, index: number) => (
+                {(block.content as any).platforms.map((platform: any, index: number) => (
                   <a
                     key={index}
                     href={platform.url}
@@ -298,7 +298,7 @@ function SiteRenderer({ site }: { site: SiteData }) {
           case 'gallery':
             return (
               <div key={block.id} className="grid grid-cols-2 gap-3" style={{ marginBottom }}>
-                {block.content.images.map((image: string, index: number) => (
+                {(block.content as any).images.map((image: string, index: number) => (
                   <div key={index} className="aspect-square overflow-hidden rounded-xl">
                     <img
                       src={image}
@@ -314,10 +314,10 @@ function SiteRenderer({ site }: { site: SiteData }) {
             return (
               <div 
                 key={block.id} 
-                className={`text-${block.content.align || 'center'}`}
+                className={`text-${(block.content as any).align || 'center'}`}
                 style={{ marginBottom }}
               >
-                <p className="text-gray-600 leading-relaxed">{block.content.text}</p>
+                <p className="text-gray-600 leading-relaxed">{(block.content as any).text}</p>
               </div>
             );
             
