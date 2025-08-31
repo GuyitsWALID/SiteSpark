@@ -99,3 +99,127 @@ html {
 .bg-gradient-mesh {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
+
+/* 3D Floating Social Media Icons Animations */
+@keyframes float-1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotateY(0deg) rotateX(0deg);
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px) rotateY(5deg) rotateX(5deg);
+  }
+  50% {
+    transform: translateY(-25px) translateX(0px) rotateY(-5deg) rotateX(10deg);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-8px) rotateY(3deg) rotateX(-5deg);
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotateY(0deg) rotateZ(0deg);
+  }
+  33% {
+    transform: translateY(-20px) translateX(-12px) rotateY(-8deg) rotateZ(-3deg);
+  }
+  66% {
+    transform: translateY(-30px) translateX(15px) rotateY(10deg) rotateZ(5deg);
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotateX(0deg) rotateZ(0deg);
+  }
+  20% {
+    transform: translateY(-18px) translateX(8px) rotateX(8deg) rotateZ(2deg);
+  }
+  40% {
+    transform: translateY(-35px) translateX(-5px) rotateX(-5deg) rotateZ(-4deg);
+  }
+  60% {
+    transform: translateY(-22px) translateX(12px) rotateX(12deg) rotateZ(3deg);
+  }
+  80% {
+    transform: translateY(-8px) translateX(-10px) rotateX(-3deg) rotateZ(-1deg);
+  }
+}
+
+@keyframes float-4 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotateY(0deg) rotateX(0deg);
+  }
+  30% {
+    transform: translateY(-25px) translateX(-15px) rotateY(-10deg) rotateX(8deg);
+  }
+  70% {
+    transform: translateY(-15px) translateX(18px) rotateY(12deg) rotateX(-6deg);
+  }
+}
+
+@keyframes float-5 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotateZ(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-12px) translateX(6px) rotateZ(3deg) rotateY(6deg);
+  }
+  50% {
+    transform: translateY(-28px) translateX(-8px) rotateZ(-5deg) rotateY(-8deg);
+  }
+  75% {
+    transform: translateY(-18px) translateX(14px) rotateZ(4deg) rotateY(10deg);
+  }
+}
+
+@keyframes float-6 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  16% {
+    transform: translateY(-20px) translateX(10px) rotateX(5deg) rotateY(8deg) rotateZ(2deg);
+  }
+  32% {
+    transform: translateY(-32px) translateX(-6px) rotateX(-8deg) rotateY(-5deg) rotateZ(-3deg);
+  }
+  48% {
+    transform: translateY(-25px) translateX(16px) rotateX(10deg) rotateY(12deg) rotateZ(4deg);
+  }
+  64% {
+    transform: translateY(-15px) translateX(-12px) rotateX(-6deg) rotateY(-10deg) rotateZ(-2deg);
+  }
+  80% {
+    transform: translateY(-8px) translateX(8px) rotateX(3deg) rotateY(6deg) rotateZ(1deg);
+  }
+}
+
+.animate-float-1 {
+  animation: float-1 8s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.animate-float-2 {
+  animation: float-2 10s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-3 {
+  animation: float-3 12s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.animate-float-4 {
+  animation: float-4 9s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-5 {
+  animation: float-5 11s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.animate-float-6 {
+  animation: float-6 13s ease-in-out infinite;
+  animation-delay: 3s;
+}

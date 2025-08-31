@@ -3,10 +3,12 @@ import { SiteSparkHorizontal } from '@/components/ui';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-900 to-pink-900 overflow-hidden relative">
+      {/* Interactive Cursor Effect */}
+      <div id="cursor-trail" className="cursor-trail hidden md:block"></div>
       {/* Floating Navigation */}
-      
-        <div className=" my-4 bg-white/80 backdrop-blur-xl border border-gray-200/50 rounded-2xl px-8 py-4 shadow-xl shadow-gray-900/10 mx-auto animate-fade-in-down">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl my-2 bg-white/95 backdrop-blur-xl border border-gray-200 rounded-xl px-3 sm:px-6 py-2 shadow-lg mx-auto">
           <div className="flex items-center justify-between w-full">
             <SiteSparkHorizontal size="lg" />
             <div className="hidden md:flex items-center space-x-4">
@@ -23,19 +25,87 @@ export default function Home() {
                 Pricing
               </Link>
             </div>
-            <Link href="/dashboard" className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium">
-              Get Started Free
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link href="/dashboard" className="px-3 sm:px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium text-xs sm:text-base">
+                Get Started Free
+              </Link>
+              {/* Mobile Menu Button */}
+              <button className="md:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
+      </nav>
       
 
       {/* Hero Section */}
-      <section className="px-4 pt-24 pb-16 sm:px-6 lg:px-8 relative">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-pink-400 to-blue-500 rounded-full opacity-15 animate-bounce" style={{animationDuration: '3s'}}></div>
+      <section className="px-4 pt-24 pb-16 sm:px-6 lg:px-8 relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden">
+        {/* Animated Social Media Icons Background */}
+        <div className="absolute inset-0">
+          {/* Twitter/X Icon */}
+          <div className="absolute top-20 left-10 animate-float-1">
+            <div className="w-16 h-16 bg-gradient-to-br from-black to-gray-800 rounded-xl shadow-2xl flex items-center justify-center transform rotate-12 hover:rotate-0 transition-transform duration-500 social-icon-interactive">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* YouTube Icon */}
+          <div className="absolute top-32 right-20 animate-float-2">
+            <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500 social-icon-interactive">
+              <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* Spotify Icon */}
+          <div className="absolute bottom-40 left-20 animate-float-3">
+            <div className="w-18 h-18 bg-gradient-to-br from-green-400 to-green-600 rounded-full shadow-2xl flex items-center justify-center transform rotate-45 hover:rotate-0 transition-transform duration-500 social-icon-interactive">
+              <svg className="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* Instagram Icon */}
+          <div className="absolute top-60 right-10 animate-float-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-6 hover:rotate-0 transition-transform duration-500 social-icon-interactive">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.017 0C8.396 0 7.896.013 6.695.072 5.495.131 4.726.333 4.058.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.806.131 5.576.072 6.776.013 7.977 0 8.477 0 12.017s.013 4.04.072 5.241c.059 1.2.261 1.97.558 2.637.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.667.297 1.436.499 2.637.558 1.201.059 1.701.072 5.241.072s4.04-.013 5.241-.072c1.2-.059 1.97-.261 2.637-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.297-.667.499-1.437.558-2.637.059-1.201.072-1.701.072-5.241s-.013-4.04-.072-5.241c-.059-1.2-.261-1.97-.558-2.637-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.667-.297-1.436-.499-2.637-.558C15.996.013 15.496 0 12.017 0zM12.017 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 15.674c-3.396 0-6.146-2.75-6.146-6.146 0-3.396 2.75-6.146 6.146-6.146 3.396 0 6.146 2.75 6.146 6.146 0 3.396-2.75 6.146-6.146 6.146zM12.017 7.283c-2.606 0-4.734 2.127-4.734 4.734 0 2.606 2.128 4.734 4.734 4.734 2.607 0 4.734-2.128 4.734-4.734 0-2.607-2.127-4.734-4.734-4.734z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* Facebook Icon */}
+          <div className="absolute bottom-20 right-32 animate-float-5">
+            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl shadow-2xl flex items-center justify-center transform rotate-12 hover:rotate-0 transition-transform duration-500 social-icon-interactive">
+              <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* TikTok Icon */}
+          <div className="absolute top-96 left-32 animate-float-6">
+            <div className="w-15 h-15 bg-gradient-to-br from-black to-gray-900 rounded-2xl shadow-2xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500 social-icon-interactive">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* Floating particles */}
+          <div className="absolute inset-0">
+            <div className="absolute top-16 left-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-ping" style={{animationDelay: '0s'}}></div>
+            <div className="absolute top-32 left-3/4 w-1 h-1 bg-pink-300 rounded-full opacity-40 animate-ping" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-32 left-1/3 w-3 h-3 bg-blue-300 rounded-full opacity-50 animate-ping" style={{animationDelay: '2s'}}></div>
+            <div className="absolute top-80 right-1/4 w-2 h-2 bg-purple-300 rounded-full opacity-60 animate-ping" style={{animationDelay: '0.5s'}}></div>
+          </div>
         </div>
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
@@ -44,14 +114,14 @@ export default function Home() {
               🚀 Transform your bio link in minutes
             </span>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up px-4" style={{animationDelay: '0.2s'}}>
             Create and customize<br />
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
               your link in bio
             </span><br />
-            <span className="text-4xl sm:text-5xl lg:text-6xl">in minutes</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl">in minutes</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up px-4" style={{animationDelay: '0.4s'}}>
             Connect your TikTok, Instagram, Twitter, website, store, videos, music, 
             podcast, events and more. It all comes together in a link in bio landing page 
             designed to convert.
@@ -61,14 +131,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
             <Link 
               href="/dashboard" 
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-base sm:text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group w-full sm:w-auto text-center"
             >
               Get started for free
               <svg className="w-5 h-5 ml-2 inline-block group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
-            <button className="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold text-lg hover:border-gray-400 hover:shadow-lg transition-all duration-300 bg-white">
+            <button className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/30 text-white rounded-xl font-semibold text-base sm:text-lg hover:border-white/50 hover:bg-white/10 hover:shadow-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto">
               Watch demo
             </button>
           </div>
@@ -127,72 +197,72 @@ export default function Home() {
       </section>
 
       {/* Real Use Cases Section */}
-      <section id="use-cases" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
+      <section id="use-cases" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-900 via-pink-900 to-rose-900 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
               Perfect for every
-              <span className="bg-gradient-to-r from-red-500 to-pink-600 bg-clip-text text-transparent"> creator</span>
+              <span className="bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent"> creator</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
               From musicians to entrepreneurs, SiteSpark adapts to your unique needs
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Content Creator */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:bg-white/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Content Creators</h3>
-                <p className="text-gray-600 mb-6">Share your latest videos, podcasts, and exclusive content. Drive engagement and grow your audience.</p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Video galleries</li>
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Exclusive content</li>
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Fan engagement tools</li>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Content Creators</h3>
+                <p className="text-gray-200 mb-4 sm:mb-6 text-sm sm:text-base">Share your latest videos, podcasts, and exclusive content. Drive engagement and grow your audience.</p>
+                <ul className="space-y-2 text-xs sm:text-sm text-gray-300">
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Video galleries</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Exclusive content</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Fan engagement tools</li>
                 </ul>
               </div>
             </div>
 
             {/* E-commerce */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:bg-white/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Online Sellers</h3>
-                <p className="text-gray-600 mb-6">Showcase products, process payments, and manage your entire business from one link.</p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Product catalogs</li>
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Payment processing</li>
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Order management</li>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Online Sellers</h3>
+                <p className="text-gray-200 mb-4 sm:mb-6 text-sm sm:text-base">Showcase products, process payments, and manage your entire business from one link.</p>
+                <ul className="space-y-2 text-xs sm:text-sm text-gray-300">
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Product catalogs</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Payment processing</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Order management</li>
                 </ul>
               </div>
             </div>
 
             {/* Service Providers */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:bg-white/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v6a2 2 0 01-2 2H10a2 2 0 01-2-2V6m8 0H8" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Service Providers</h3>
-                <p className="text-gray-600 mb-6">Accept bookings, showcase your work, and manage client relationships seamlessly.</p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Online booking</li>
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Portfolio showcase</li>
-                  <li className="flex items-center"><span className="text-green-500 mr-2">✓</span> Client management</li>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Service Providers</h3>
+                <p className="text-gray-200 mb-4 sm:mb-6 text-sm sm:text-base">Accept bookings, showcase your work, and manage client relationships seamlessly.</p>
+                <ul className="space-y-2 text-xs sm:text-sm text-gray-300">
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Online booking</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Portfolio showcase</li>
+                  <li className="flex items-center"><span className="text-green-400 mr-2">✓</span> Client management</li>
                 </ul>
               </div>
             </div>
@@ -201,14 +271,14 @@ export default function Home() {
       </section>
 
       {/* Real Templates Gallery */}
-      <section id="templates" className="px-4 py-20 sm:px-6 lg:px-8 bg-white">
+      <section id="templates" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-900 via-rose-900 to-purple-900 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
               Choose from
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> stunning templates</span>
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> stunning templates</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
               Professional designs that convert visitors into customers
             </p>
           </div>
@@ -405,14 +475,14 @@ export default function Home() {
       </section>
 
       {/* Analytics Section */}
-      <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-rose-900 via-purple-900 to-indigo-900 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
               Track your success with
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"> powerful analytics</span>
+              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent"> powerful analytics</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
               Monitor revenue, track engagement, and optimize your content with real-time insights
             </p>
           </div>
@@ -426,8 +496,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Revenue Tracking</h3>
-                  <p className="text-gray-600">Monitor your earnings across all products and services with detailed sales analytics.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Revenue Tracking</h3>
+                  <p className="text-gray-200">Monitor your earnings across all products and services with detailed sales analytics.</p>
                 </div>
               </div>
 
@@ -439,8 +509,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Visitor Insights</h3>
-                  <p className="text-gray-600">Understand your audience with detailed visitor analytics and engagement metrics.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Visitor Insights</h3>
+                  <p className="text-gray-200">Understand your audience with detailed visitor analytics and engagement metrics.</p>
                 </div>
               </div>
 
@@ -451,8 +521,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Performance Optimization</h3>
-                  <p className="text-gray-600">Get actionable insights to improve your conversion rates and engagement.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Performance Optimization</h3>
+                  <p className="text-gray-200">Get actionable insights to improve your conversion rates and engagement.</p>
                 </div>
               </div>
             </div>
@@ -517,13 +587,13 @@ export default function Home() {
       </section>
 
       {/* Use Cases Section */}
-      <section className="px-4 py-20 bg-white sm:px-6 lg:px-8">
+      <section className="px-4 py-20 bg-gradient-to-br from-purple-800 via-indigo-800 to-blue-800 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Perfect for every type of creator
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-2xl mx-auto">
               Whether you&apos;re selling products, booking services, or building your brand, SiteSpark helps you convert more visitors.
             </p>
           </div>
@@ -571,12 +641,12 @@ export default function Home() {
                 description: 'Drive traffic to your online store and products' 
               }
             ].map((useCase, index) => (
-              <div key={index} className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors duration-300 group">
-                <div className="text-gray-600 mb-4 group-hover:text-blue-600 transition-colors duration-300 flex justify-center">
+              <div key={index} className="text-center p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl hover:bg-white/20 transition-colors duration-300 group">
+                <div className="text-gray-300 mb-4 group-hover:text-blue-400 transition-colors duration-300 flex justify-center">
                   {useCase.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{useCase.title}</h3>
-                <p className="text-gray-600 text-sm">{useCase.description}</p>
+                <h3 className="text-lg font-semibold text-white mb-2">{useCase.title}</h3>
+                <p className="text-gray-200 text-sm">{useCase.description}</p>
               </div>
             ))}
           </div>
@@ -584,122 +654,177 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="px-4 py-20 bg-white sm:px-6 lg:px-8">
+      <section id="pricing" className="px-4 py-20 bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Simple, transparent pricing
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-200">
               Start free, upgrade when you need more features.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Free Plan */}
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-blue-300 transition-colors">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Free</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-2">$0</div>
-                <p className="text-gray-600">Perfect to get started</p>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-2">Starter</h3>
+                <div className="text-5xl font-bold text-white mb-2">$0</div>
+                <p className="text-gray-300">Perfect to get started</p>
               </div>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Single page site
+                  <span className="text-white">1 Link-in-bio page</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Basic link blocks
+                  <span className="text-white">Up to 5 link blocks</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Basic analytics
+                  <span className="text-white">3 premium templates</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  SiteSpark branding
+                  <span className="text-white">Basic analytics</span>
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-white">SiteSpark branding</span>
                 </li>
               </ul>
-              <Link href="/dashboard" className="w-full block text-center py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-colors">
-                Get started free
+              <Link href="/dashboard" className="w-full block text-center py-4 border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 transform hover:scale-105">
+                Get Started Free
               </Link>
+              <p className="text-center text-gray-400 text-sm mt-3">No credit card required</p>
             </div>
 
             {/* Pro Plan */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-500 rounded-2xl p-8 relative">
-              <div className="absolute top-4 right-4">
-                <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  Popular
+            <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-sm border-2 border-blue-400 rounded-3xl p-8 relative transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                  🚀 MOST POPULAR
                 </span>
               </div>
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-2">$19</div>
-                <p className="text-gray-600">Per month, billed annually</p>
+              <div className="text-center mb-8 pt-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-2">Pro</h3>
+                <div className="flex items-center justify-center mb-2">
+                  <span className="text-2xl text-gray-400 line-through mr-2">$29</span>
+                  <span className="text-5xl font-bold text-white">$19</span>
+                  <span className="text-gray-300 ml-2">/month</span>
+                </div>
+                <p className="text-blue-300">Billed annually • Save 35%</p>
               </div>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Unlimited pages
+                  <span className="text-white font-medium">Everything in Starter +</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  All business widgets
+                  <span className="text-white">Unlimited pages & links</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Custom domain & QR codes
+                  <span className="text-white">Custom domain & QR codes</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Advanced analytics
+                  <span className="text-white">Advanced analytics & insights</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Export & white-label
+                  <span className="text-white">All premium templates</span>
                 </li>
                 <li className="flex items-center">
-                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  Remove branding
+                  <span className="text-white">Remove SiteSpark branding</span>
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-white">Priority customer support</span>
                 </li>
               </ul>
-              <Link href="/dashboard" className="w-full block text-center py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all">
-                Start 7-day free trial
+              <Link href="/dashboard" className="w-full block text-center py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-bold text-lg hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                Start 7-Day Free Trial
               </Link>
+              <p className="text-center text-blue-300 text-sm mt-3">Then $19/month • Cancel anytime</p>
+            </div>
+          </div>
+          
+          {/* Additional CTA Section */}
+          <div className="text-center mt-16">
+            <p className="text-gray-300 text-lg mb-6">
+              Over 10,000 creators trust SiteSpark to grow their business
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="flex items-center text-gray-300">
+                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                No setup fees
+              </div>
+              <div className="flex items-center text-gray-300">
+                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                Cancel anytime
+              </div>
+              <div className="flex items-center text-gray-300">
+                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                24/7 support
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Social Proof */}
-      <section className="px-4 py-20 bg-gray-50 sm:px-6 lg:px-8">
+      <section className="px-4 py-20 bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Loved by creators worldwide
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-200">
               See how SiteSpark transformed their online presence.
             </p>
           </div>
@@ -824,6 +949,92 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Interactive Effects Script */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            // Cursor trail effect
+            let cursorTrail = [];
+            let animationId = null;
+
+            function createCursorTrail() {
+              const trail = document.getElementById('cursor-trail');
+              if (!trail) return;
+              
+              document.addEventListener('mousemove', (e) => {
+                cursorTrail.push({
+                  x: e.clientX,
+                  y: e.clientY,
+                  life: 1
+                });
+                
+                if (cursorTrail.length > 10) {
+                  cursorTrail.shift();
+                }
+                
+                if (!animationId) {
+                  animateTrail();
+                }
+              });
+            }
+
+            function animateTrail() {
+              const trail = document.getElementById('cursor-trail');
+              if (!trail) return;
+              
+              trail.innerHTML = '';
+              
+              cursorTrail.forEach((point, index) => {
+                const dot = document.createElement('div');
+                dot.style.position = 'fixed';
+                dot.style.left = point.x + 'px';
+                dot.style.top = point.y + 'px';
+                dot.style.width = (point.life * 10) + 'px';
+                dot.style.height = (point.life * 10) + 'px';
+                dot.style.borderRadius = '50%';
+                dot.style.background = 'radial-gradient(circle, rgba(59, 130, 246, ' + point.life + ') 0%, transparent 70%)';
+                dot.style.pointerEvents = 'none';
+                dot.style.transform = 'translate(-50%, -50%)';
+                trail.appendChild(dot);
+                
+                point.life -= 0.05;
+              });
+              
+              cursorTrail = cursorTrail.filter(point => point.life > 0);
+              
+              if (cursorTrail.length > 0) {
+                animationId = requestAnimationFrame(animateTrail);
+              } else {
+                animationId = null;
+              }
+            }
+
+            // Social media icon touch effects
+            function addTouchEffects() {
+              const socialIcons = document.querySelectorAll('.social-icon-interactive');
+              
+              socialIcons.forEach(icon => {
+                icon.addEventListener('touchstart', () => {
+                  icon.style.transform = 'scale(1.15) rotateY(180deg)';
+                  icon.style.filter = 'brightness(1.3) drop-shadow(0 10px 20px rgba(0,0,0,0.3))';
+                });
+                
+                icon.addEventListener('touchend', () => {
+                  icon.style.transform = '';
+                  icon.style.filter = '';
+                });
+              });
+            }
+
+            // Initialize effects when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+              createCursorTrail();
+              addTouchEffects();
+            });
+          `
+        }}
+      />
     </div>
   );
 }
